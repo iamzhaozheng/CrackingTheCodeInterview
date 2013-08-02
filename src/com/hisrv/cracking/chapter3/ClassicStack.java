@@ -2,18 +2,18 @@ package com.hisrv.cracking.chapter3;
 
 import java.util.Stack;
 
-public class ClassicStack implements IStack {
+public class ClassicStack implements IStack<Integer> {
 
 	private Stack<Integer> mStack = new Stack<Integer>();
 	
 	@Override
-	public void push(int v) {
+	public void push(Integer v) {
 		// TODO Auto-generated method stub
 		mStack.push(v);
 	}
 
 	@Override
-	public int pop() {
+	public Integer pop() {
 		// TODO Auto-generated method stub
 		return mStack.pop();
 	}
@@ -25,7 +25,7 @@ public class ClassicStack implements IStack {
 	}
 
 	@Override
-	public int peek() {
+	public Integer peek() {
 		// TODO Auto-generated method stub
 		return mStack.peek();
 	}

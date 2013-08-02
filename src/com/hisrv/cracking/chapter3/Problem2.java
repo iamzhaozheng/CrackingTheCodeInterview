@@ -1,36 +1,52 @@
 package com.hisrv.cracking.chapter3;
 
-import com.hisrv.cracking.chapter2.ILinkedList;
+import java.util.Stack;
 
 public class Problem2 {
-	public static class LinkedListByTwoStacks implements ILinkedList {
-		private IStack mAddStack = new ClassicStack();
-		private IStack mRemoveStack = new ClassicStack();
+	public static class StackMinNode {
+		public int val;
+		public int min;
+		
+		public StackMinNode(int val, int min) {
+			this.val = val;
+			this.min = min;
+		}
+	}
+	
+	public static class StackWithMin implements IStack<Integer> {
+		
+		private Stack<StackMinNode> mStack = new Stack<StackMinNode> ();
 		
 		@Override
-		public void add(int v) {
+		public void push(Integer v) {
 			// TODO Auto-generated method stub
-			mAddStack.push(v);
+			if (mStack.isEmpty()) {
+				mStack.push(new StackMinNode(v, v));
+			} else {
+				mStack.push(new StackMinNode(v, Math.min(mStack.peek().min, v)));
+			}
 		}
 
 		@Override
-		public int remove() {
+		public Integer pop() {
 			// TODO Auto-generated method stub
-			if (mRemoveStack.isEmpty()) {
-				while (!mAddStack.isEmpty()) {
-					mRemoveStack.push(mAddStack.pop());
-				}
-			}
-			if (mRemoveStack.isEmpty()) {
-				return -1;
-			}
-			return mRemoveStack.pop();
+			return mStack.pop().val;
 		}
 
 		@Override
 		public boolean isEmpty() {
 			// TODO Auto-generated method stub
-			return mRemoveStack.isEmpty() && mAddStack.isEmpty();
+			return mStack.isEmpty();
+		}
+
+		@Override
+		public Integer peek() {
+			// TODO Auto-generated method stub
+			return mStack.peek().val;
+		}
+		
+		public Integer min() {
+			return mStack.peek().min;
 		}
 		
 	}

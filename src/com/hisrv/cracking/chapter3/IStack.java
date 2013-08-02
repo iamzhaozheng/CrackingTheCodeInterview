@@ -1,8 +1,8 @@
 package com.hisrv.cracking.chapter3;
 
-public interface IStack {
-	public void push(int v);
-	public int pop();
+public interface IStack<V> {
+	public void push(V v);
+	public V pop();
 	public boolean isEmpty();
-	public int peek();
+	public V peek();
 }
